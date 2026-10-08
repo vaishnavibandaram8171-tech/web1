@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Study Planner</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📚 Student Study Planner</h1>
+                <p class="subtitle">Organize your studies and achieve your academic goals</p>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="sessions">Study Sessions</button>
+            <button class="tab-btn" data-tab="assignments">Assignments</button>
+            <button class="tab-btn" data-tab="analytics">Analytics</button>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <div class="dashboard-grid">
+                <!-- Quick Stats -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSessions">0</div>
+                        <div class="stat-label">Study Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalHours">0</div>
+                        <div class="stat-label">Hours Studied</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completedAssignments">0</div>
+                        <div class="stat-label">Assignments Done</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingAssignments">0</div>
+                        <div class="stat-label">Pending Tasks</div>
+                    </div>
+                </div>
+
+                <!-- Quick Add Session -->
+                <div class="quick-add-section">
+                    <h2>Quick Add Study Session</h2>
+                    <form id="quickAddForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="quickSubject">Subject</label>
+                            <input type="text" id="quickSubject" placeholder="e.g., Mathematics" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quickDuration">Duration (minutes)</label>
+                            <input type="number" id="quickDuration" min="5" value="30" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="quickNotes">Notes</label>
+                            <textarea id="quickNotes" placeholder="What did you study?" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width">+ Add Session</button>
+                    </form>
+                </div>
+
+                <!-- Recent Sessions -->
+                <div class="recent-sessions">
+                    <h2>Recent Sessions</h2>
+                    <div id="recentSessionsList" class="sessions-list">
+                        <p class="empty-state">No study sessions yet. Start by adding one!</p>
+                    </div>
+                </div>
+
+                <!-- Upcoming Deadlines -->
+                <div class="upcoming-deadlines">
+                    <h2>Upcoming Deadlines</h2>
+                    <div id="upcomingList" class="deadlines-list">
+                        <p class="empty-state">No pending assignments. Great job! 🎉</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Sessions Tab -->
+        <section id="sessions" class="tab-content">
+            <div class="section-container">
+                <h2>All Study Sessions</h2>
+                
+                <div class="sessions-form">
+                    <h3>Add New Study Session</h3>
+                    <form id="sessionForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="e.g., Physics" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration (minutes)</label>
+                            <input type="number" id="duration" min="5" value="60" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="notes">Study Notes</label>
+                            <textarea id="notes" placeholder="What did you study? What topics did you cover?" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width">Add Session</button>
+                    </form>
+                </div>
+
+                <div class="sessions-list-container">
+                    <h3>Session History</h3>
+                    <div id="sessionsList" class="sessions-list">
+                        <p class="empty-state">No study sessions recorded yet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignments Tab -->
+        <section id="assignments" class="tab-content">
+            <div class="section-container">
+                <h2>Assignment Tracker</h2>
+                
+                <div class="assignments-form">
+                    <h3>Add New Assignment</h3>
+                    <form id="assignmentForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="assignmentName">Assignment Name</label>
+                            <input type="text" id="assignmentName" placeholder="e.g., Math Homework Chapter 5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject2">Subject</label>
+                            <input type="text" id="subject2" placeholder="e.g., Mathematics" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deadline">Deadline</label>
+                            <input type="date" id="deadline" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="description">Description</label>
+                            <textarea id="description" placeholder="Assignment details and requirements" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width">Add Assignment</button>
+                    </form>
+                </div>
+
+                <div class="assignments-list-container">
+                    <h3>Assignments</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                    <div id="assignmentsList" class="assignments-list">
+                        <p class="empty-state">No assignments added yet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Tab -->
+        <section id="analytics" class="tab-content">
+            <div class="section-container">
+                <h2>Study Analytics</h2>
+                
+                <div class="analytics-grid">
+                    <!-- Subject-wise Study Time -->
+                    <div class="analytics-card">
+                        <h3>Study Time by Subject</h3>
+                        <div id="subjectAnalytics" class="analytics-content">
+                            <p class="empty-state">No data yet. Start studying!</p>
+                        </div>
+                    </div>
+
+                    <!-- Study Streak -->
+                    <div class="analytics-card">
+                        <h3>Study Statistics</h3>
+                        <div id="studyStats" class="analytics-content">
+                            <div class="stat-item">
+                                <span class="label">Total Sessions:</span>
+                                <span class="value" id="statTotalSessions">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Total Study Time:</span>
+                                <span class="value" id="statTotalTime">0 hours</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Average Session Duration:</span>
+                                <span class="value" id="statAvgDuration">0 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assignment Progress -->
+                    <div class="analytics-card full-width">
+                        <h3>Assignment Progress</h3>
+                        <div id="assignmentProgress" class="analytics-content">
+                            <p class="empty-state">No assignment data yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Student Study Planner. Keep studying and achieve your goals! 📖✨</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
